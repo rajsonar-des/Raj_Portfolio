@@ -51,7 +51,7 @@ header.top { position: absolute; top: 0; right: 0; padding: 1.25rem 2rem; z-inde
 .size-row button { flex: 1; text-align: center; border: 1px solid var(--line); }
 
 /* centre */
-main { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; justify-content: center; padding: 0 1.25rem; box-sizing: border-box; }
+main { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; padding: 0 1.25rem; box-sizing: border-box; }
 h1 {
   margin: 0; font-family: var(--display); font-weight: 400; text-align: center; color: var(--fg);
   font-size: clamp(1.4rem, 4vw, 2.4rem); letter-spacing: .14em; text-transform: uppercase;
@@ -64,6 +64,10 @@ header.top { animation: fade 1.4s var(--ease) .4s both; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); letter-spacing: .3em; } to { opacity: 1; transform: none; letter-spacing: .14em; } }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 @media (max-width: 640px) { header.top { padding: 1rem 1.25rem; left: 0; right: 0; display: flex; justify-content: flex-end; } }
+.game { width: 100%; max-width: 720px; display: flex; flex-direction: column; align-items: center; gap: .7rem; }
+#dino { display: block; width: 100%; height: 180px; cursor: pointer; border-radius: 10px; }
+#dino:focus-visible { outline: 1px solid var(--muted); outline-offset: 4px; }
+.game-hint { margin: 0; font-family: var(--display); font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
 </head>
@@ -102,6 +106,10 @@ header.top { animation: fade 1.4s var(--ease) .4s both; }
     <h1>Coming soon</h1>
     <span class="dot" aria-hidden="true"></span>
   </div>
+  <section class="game" aria-label="Mini game">
+    <canvas id="dino" tabindex="0" aria-label="Mini runner game. Press space or tap to jump."></canvas>
+    <p class="game-hint" id="game-hint"></p>
+  </section>
 </main>
 <script>
 (function () {
@@ -142,4 +150,113 @@ header.top { animation: fade 1.4s var(--ease) .4s both; }
 </body>
 </html>
 
+<script>
+(function () {
+  var canvas = document.getElementById('dino'), hint = document.getElementById('game-hint');
+  var ctx = canvas.getContext('2d'), root = document.documentElement;
+  var W = 0, H = 0, groundY = 0, state = 'idle', dino = null, obstacles = [];
+  var speed = 0, dist = 0, score = 0, best = 0, nextGap = 320, last = 0, overAt = 0;
+  var HINTS = { idle: 'Click or press space to play', running: 'Space or tap to jump', over: 'Space or tap to play again' };
+
+  function color(name, fallback) { return getComputedStyle(root).getPropertyValue(name).trim() || fallback; }
+  function pad(n) { return ('00000' + n).slice(-5); }
+  function reset() { return { x: 36, w: 26, h: 34, y: groundY - 34, vy: 0, onGround: true, leg: 0 }; }
+
+  function resize() {
+    var dpr = window.devicePixelRatio || 1, r = canvas.getBoundingClientRect();
+    W = r.width; H = r.height;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    groundY = H - 24;
+    if (state !== 'running') dino = reset();
+    draw();
+  }
+  function start() {
+    state = 'running'; dino = reset(); obstacles = []; speed = 300; dist = 0; score = 0; nextGap = 320;
+    hint.textContent = HINTS.running; last = performance.now();
+    requestAnimationFrame(loop);
+  }
+  function jump() { if (dino.onGround) { dino.vy = -820; dino.onGround = false; } }
+  function action() {
+    if (state === 'idle') start();
+    else if (state === 'running') jump();
+    else if (state === 'over' && performance.now() - overAt > 600) start();
+  }
+  function gameOver() {
+    state = 'over'; overAt = performance.now(); best = Math.max(best, score);
+    hint.textContent = HINTS.over;
+  }
+  function update(dt) {
+    speed = Math.min(780, speed + 14 * dt);
+    dist += speed * dt; score = Math.floor(dist / 10);
+    dino.vy += 2600 * dt; dino.y += dino.vy * dt;
+    if (dino.y >= groundY - dino.h) { dino.y = groundY - dino.h; dino.vy = 0; dino.onGround = true; }
+    if (dino.onGround) dino.leg += dt * 12;
+
+    obstacles.forEach(function (o) { o.x -= speed * dt; });
+    obstacles = obstacles.filter(function (o) { return o.x + o.w > -10; });
+    var lastOb = obstacles[obstacles.length - 1];
+    if (!lastOb || lastOb.x < W - nextGap) {
+      obstacles.push({ x: W + 10, w: 14 + Math.random() * 12, h: 28 + Math.random() * 18 });
+      nextGap = 240 + Math.random() * 260;
+    }
+
+    var bottom = dino.y + dino.h;
+    for (var i = 0; i < obstacles.length; i++) {
+      var o = obstacles[i];
+      var hitX = dino.x + dino.w - 6 > o.x + 6 && dino.x + 6 < o.x + o.w - 6;
+      var hitY = bottom - 4 > groundY - o.h + 4;
+      if (hitX && hitY) { gameOver(); return; }
+    }
+  }
+  function drawDino(fg, bg) {
+    var d = dino, x = d.x, y = d.y, phase = Math.floor(d.leg) % 2;
+    ctx.fillStyle = fg;
+    ctx.fillRect(x + 8, y, 16, 13);
+    ctx.fillRect(x, y + 10, 26, 18);
+    ctx.fillRect(x - 6, y + 12, 8, 6);
+    if (d.onGround) {
+      ctx.fillRect(x + 5, y + 28, 6, phase ? 6 : 4);
+      ctx.fillRect(x + 15, y + 28, 6, phase ? 4 : 6);
+    } else {
+      ctx.fillRect(x + 5, y + 28, 6, 6);
+      ctx.fillRect(x + 15, y + 28, 6, 6);
+    }
+    ctx.fillStyle = bg;
+    ctx.fillRect(x + 18, y + 4, 3, 3);
+  }
+  function draw() {
+    var fg = color('--fg', '#111'), muted = color('--muted', '#888'), bg = color('--bg', '#fff');
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = muted; ctx.fillRect(0, groundY, W, 1);
+    if (!dino) return;
+    obstacles.forEach(function (o) { ctx.fillStyle = muted; ctx.fillRect(o.x, groundY - o.h, o.w, o.h); });
+    drawDino(fg, bg);
+    ctx.font = '12px system-ui, sans-serif';
+    ctx.fillStyle = muted; ctx.textAlign = 'right';
+    ctx.fillText('HI ' + pad(best) + '   ' + pad(state === 'idle' ? 0 : score), W - 6, 18);
+    ctx.fillStyle = fg; ctx.textAlign = 'center';
+    if (state === 'idle') ctx.fillText('PRESS SPACE TO START', W / 2, H / 2 - 20);
+    if (state === 'over') ctx.fillText('GAME OVER', W / 2, H / 2 - 20);
+  }
+  function loop(t) {
+    if (state !== 'running') return;
+    var dt = Math.max(0, Math.min((t - last) / 1000, 0.05)); last = t;
+    update(dt); draw();
+    if (state === 'running') requestAnimationFrame(loop);
+  }
+
+  canvas.addEventListener('pointerdown', function () { canvas.focus(); action(); });
+  document.addEventListener('keydown', function (e) {
+    if ((e.code === 'Space' || e.code === 'ArrowUp') && document.activeElement === canvas) {
+      e.preventDefault();
+      if (!e.repeat) action();
+    }
+  });
+  window.addEventListener('resize', resize);
+  new MutationObserver(draw).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  hint.textContent = HINTS.idle;
+  resize();
+})();
+</script>
 </body></html>
