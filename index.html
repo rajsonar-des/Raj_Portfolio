@@ -686,7 +686,9 @@ const ctx = cv.getContext('2d');
 const el = id => document.getElementById(id);
 let DPR, VW, VH, pts = [], geo = {}, mode = null;
 // the brain draws in on the first visit of a tab; later loads and returns from a project go straight to the photo
-const seenIntro = (() => { try { return sessionStorage.getItem('intro-seen') === '1'; } catch (e) { return false; } })();
+// a browser reload plays the intro again; returning by back or forward navigation does not
+const navType = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0] || {}).type;
+const seenIntro = navType !== 'reload' && (() => { try { return sessionStorage.getItem('intro-seen') === '1'; } catch (e) { return false; } })();
 const t0 = performance.now() - ((seenIntro || matchMedia('(prefers-reduced-motion: reduce)').matches) ? 10000 : 0);
 
 /* ---------- noise ---------- */
@@ -839,6 +841,7 @@ let bA = { e: 1, d: 1 };
 function frame(now) {
   const t = (now - t0) / 1000;
   runCues(t);
+  if (!isBg) stageOnPhotoViewport(); // follow the photo while the page settles during the intro
   const { s, top, bot, cx, cy } = geo;
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   const INK = getComputedStyle(stage).getPropertyValue('--ink').trim() || '#ededed';
@@ -923,9 +926,18 @@ document.querySelectorAll('.lbl').forEach(n => {
 addEventListener('resize', () => {
   build();
   if (isBg) { stage.style.width = VW + 'px'; stage.style.height = VH + 'px'; placeStage(true); }
+  else { stage.style.width = VW + 'px'; stage.style.height = VH + 'px'; stageOnPhotoViewport(); }
 });
 build();
+stageOnPhotoViewport();
 requestAnimationFrame(frame);
+// while the intro plays the stage is fixed to the screen, centred on the photo
+function stageOnPhotoViewport() {
+  stage.style.width = VW + 'px'; stage.style.height = VH + 'px';
+  const pr = document.querySelector('.portrait').getBoundingClientRect();
+  stage.style.left = (pr.left + pr.width / 2 - VW / 2) + 'px';
+  stage.style.top = (pr.top + pr.height / 2 - VH / 2) + 'px';
+}
 
 // keep the brain where the intro left it: the same screen position as the intro, no glide onto the photo
 // the brain is centred on the photo, in page coordinates, so it stays behind the photo wherever the page is scrolled or reloaded
@@ -945,20 +957,26 @@ function placeStage(instant) {
 }
 function startLanding() {
   isBg = true;
-  // move the stage into <main>, centred on the photo, and leave it there, fading to the background
-  document.querySelector('main').appendChild(stage);
-  stage.classList.add('in-main');
+  // the brain is already centred on the photo from the start: it loads there and settles into the background, without moving
   stage.style.width = VW + 'px'; stage.style.height = VH + 'px';
-  // a returning visit sets the brain behind the photo at once, with no fade in
-  if (seenIntro) stage.style.transition = 'none';
-  stageOnPhoto();
-  void stage.offsetWidth;
+  const r = stage.getBoundingClientRect();
+  attachStage(r.left, r.top, true);
   stage.classList.add('bg');
   document.getElementById('veil').classList.add('gone');
   document.body.classList.remove('intro');
   fadeStageWithPhoto();
-  if (seenIntro) { void stage.offsetWidth; stage.style.transition = ''; }
   try { sessionStorage.setItem('intro-seen', '1'); } catch (e) {}
+}
+// move the stage into <main> at the same viewport position, so it scrolls with the page from there on
+function attachStage(vx, vy, instant) {
+  const main = document.querySelector('main');
+  const mr = main.getBoundingClientRect();
+  main.appendChild(stage);
+  stage.classList.add('in-main');
+  stage.style.left = (vx - mr.left) + 'px';
+  stage.style.top = (vy - mr.top) + 'px';
+  stage.style.transform = '';
+  if (instant) { void stage.offsetWidth; stage.style.transition = ''; }
 }
 // the brain is only visible while the photo is on screen: it fades out as the photo moves away
 function fadeStageWithPhoto() {
