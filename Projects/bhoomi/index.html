@@ -675,13 +675,14 @@
   }
 
   /* Explore more: cover images in the cards */
-  .others .grid .card { overflow: hidden; }
+  .others .grid .card { overflow: hidden; aspect-ratio: 1200 / 546; height: auto; }
   .others .grid .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.7); transition: filter .5s var(--ease), transform .6s var(--ease); }
   .others .grid .card:hover img, .others .grid .card:focus-visible img { filter: none; transform: scale(1.03); }
   .others .grid .card span {
     left: 0; right: 0; bottom: 0; padding: 1.6rem 1rem .8rem;
     color: #ededed; background: linear-gradient(transparent, rgba(0,0,0,.72));
   }
+  @media (max-width: 640px) { .others .grid { gap: .6rem; } .others .grid .card span { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; } }
 </style>
 </head>
 <body>
