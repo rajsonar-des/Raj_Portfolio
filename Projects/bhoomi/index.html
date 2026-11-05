@@ -1,8 +1,9 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!doctype html>
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="dark">
+<script>try{['portfolio-theme','nutrithm-theme','nutrithm-appearance'].forEach(function(k){localStorage.removeItem(k)})}catch(e){}document.documentElement.setAttribute('data-theme','dark');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Publish Ready Bhoomi</title>
 <script>
@@ -70,7 +71,7 @@
 
   /* Top bar: identical to the portfolio landing page */
   header.top {
-    position: static; /* scrolls with the page, never sticky or fixed */
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
     pointer-events: none;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -265,7 +266,7 @@
     nav.main ul { gap: .4rem 1rem; }
     nav.main a { font-size: .64rem; letter-spacing: .08em; }
     .tools {
-      position: relative; right: auto; bottom: auto; top: auto;
+      position: fixed; right: 1rem; bottom: 1rem; top: auto;
       flex-direction: column; align-items: flex-end; gap: .75rem;
       grid-column: auto; justify-self: auto;
     }
@@ -579,36 +580,22 @@
 .case .video-head p { color: var(--muted); font-size: 18px; }
 .case .frame {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
   width: 100%;
   max-width: 1040px;
   aspect-ratio: 16 / 9;
-  padding: 24px;
-  background: var(--green-dark);
   border: 10px solid var(--wood);
-  border-radius: 16px;
-  color: var(--cream);
-  text-decoration: none;
-  font-family: var(--display);
-  font-size: clamp(24px, 2.6vw, 36px);
-  transition: background .3s ease;
+  border-radius: 0;
+  background: var(--green-dark);
+  overflow: hidden;
 }
-.case .frame::before {
-  content: "";
-  flex: none;
-  width: 0;
-  height: 0;
-  margin-right: 20px;
-  border-left: 22px solid var(--cream);
-  border-top: 14px solid transparent;
-  border-bottom: 14px solid transparent;
-  transition: transform .3s ease;
+.case .frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
 }
-.case .frame:hover { background: var(--green); }
-.case .frame:hover::before { transform: translateX(6px); }
 .case .video-note { color: var(--muted); font-size: 15px; }
 .case footer {
   margin-top: var(--space-block);
@@ -667,7 +654,6 @@
 .case .bh-meta { gap: 32px 24px; }
 .case .acre-bar { height: 84px; }
 .case .photo-frame { border-width: 8px; }
-.case .frame { font-size: 22px; padding: 20px; }
 .case .closing { font-size: 28px; }
 }
 
@@ -676,8 +662,26 @@
   .case .wrap { padding-inline: 20px; }
   .case h1 { text-align: left; font-weight: 700; text-wrap: wrap; }
   .case .frame { margin-inline: auto; }
+  .case .label { text-transform: none; font-weight: 700; letter-spacing: .01em; }
   /* header controls keep a solid page-coloured background, so they stay readable over the cream case box */
   header.top .back-btn, header.top .contact-toggle, header.top .access-toggle { background: var(--bg); }
+  /* header controls scroll with the page instead of staying fixed on screen */
+  header.top { position: absolute; }
+  @media (max-width: 900px) {
+    header.top .tools { position: relative; right: auto; bottom: auto; top: auto; align-items: center; }
+    header.top .contact-menu { left: auto; right: 0; transform: translateY(-4px); }
+    header.top .contact-menu.open { transform: none; }
+    header.top .access-menu { top: calc(100% + .75rem); bottom: auto; right: 0; }
+  }
+
+  /* Explore more: cover images in the cards */
+  .others .grid .card { overflow: hidden; }
+  .others .grid .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.7); transition: filter .5s var(--ease), transform .6s var(--ease); }
+  .others .grid .card:hover img, .others .grid .card:focus-visible img { filter: none; transform: scale(1.03); }
+  .others .grid .card span {
+    left: 0; right: 0; bottom: 0; padding: 1.6rem 1rem .8rem;
+    color: #ededed; background: linear-gradient(transparent, rgba(0,0,0,.72));
+  }
 </style>
 </head>
 <body>
@@ -724,7 +728,7 @@
   <h1>Bhoomi</h1>
   <dl class="meta">
     <div><dt>Module</dt><dd>Fundamentals Of Interaction Design</dd></div>
-    <div><dt>Tag</dt><dd>Tangible User Interface Design</dd></div>
+    <div><dt>Tag</dt><dd>Tangible user Interface design, Tangible Game design</dd></div>
     <div><dt>Guide</dt><dd>Dr. Mamta N Rao, Prof. Athul Dinesh</dd></div>
     <div><dt>Duration</dt><dd>2 weeks</dd></div>
   </dl>
@@ -774,7 +778,7 @@
 
   <section id="challenge">
     <div class="head">
-      <span class="label">The challenge</span>
+      <span class="label">1. The challenge</span>
       <h2 class="head-wide">Every region measures land<br><em>in their own way.</em></h2>
     </div>
 
@@ -808,7 +812,7 @@
   <section id="opportunity">
     <div class="cols l">
       <div class="head">
-        <span class="label">The opportunity</span>
+        <span class="label">2. The opportunity</span>
         <h2>What if children could <em>build</em> a unit of land instead of memorising it?</h2>
       </div>
       <figure class="photo">
@@ -836,7 +840,7 @@
   <section id="concept">
     <div class="cols l">
       <div class="head">
-        <span class="label">The concept</span>
+        <span class="label">3. The concept</span>
         <h2>A game built around <em>the land</em> itself.</h2>
       </div>
       <div class="text">
@@ -876,7 +880,7 @@
     <div class="cols even">
       <div class="text">
         <div class="head">
-          <span class="label">Game guide</span>
+          <span class="label">4. Game guide</span>
           <h2>Meet <em>Bijju</em>, the guide who walks children through the land.</h2>
         </div>
         <p>Bijju is the farmer who leads children through the game, from finding their region's land unit to seeing the harvest.</p>
@@ -892,7 +896,7 @@
 
   <section id="journey">
     <div class="head">
-      <span class="label">The interaction</span>
+      <span class="label">5. The interaction</span>
       <h2 class="head-wide">From physical action to <em>digital</em> discovery.</h2>
     </div>
 
@@ -929,7 +933,7 @@
   <section id="prototype">
     <div class="cols l">
       <div class="head">
-        <span class="label">The prototype</span>
+        <span class="label">6. The prototype</span>
         <h2>Test the experience <em>before</em> building the system.</h2>
       </div>
       <div class="text">
@@ -949,7 +953,9 @@
         <h3>The Wizard of Oz test in action</h3>
         <p>A short clip of a tile being placed, the digital response, a crop growing and the harvest.</p>
       </div>
-      <iframe width="560" height="315" style="display:block;width:100%;max-width:1040px;height:auto;aspect-ratio:16/9;margin:0 auto;border:0" src="https://www.youtube.com/embed/cNA-QcW6UFM?si=uPrPgltEYNoohPmJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <div class="frame">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/cNA-QcW6UFM?si=rDXVyI1mRoFC4f1Z" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
       <p class="video-note">Recorded during user testing. The digital responses were run by hand.</p>
     </div>
   </section>
@@ -957,7 +963,7 @@
   <section id="outcome">
     <div class="cols l">
       <div class="head">
-        <span class="label">The outcome</span>
+        <span class="label">7. The outcome</span>
         <h2>Making cultural knowledge <em>experiential.</em></h2>
       </div>
       <div class="text">
@@ -976,11 +982,25 @@
   <section class="others" aria-labelledby="others-title">
     <h2 id="others-title">Explore other projects</h2>
     <div class="grid">
-      <a class="card" href="#"><span>Project 1</span></a>
-      <a class="card" href="#"><span>Project 2</span></a>
-      <a class="card" href="#"><span>Project 3</span></a>
+      <a class="card" href="../bajaj/index.html"><img src="../bajaj/cover.webp" alt="" loading="lazy"><span>Infinity Display 2.0</span></a>
+      <a class="card" href="../nutrithm/index.html"><img src="../nutrithm/cover.webp" alt="" loading="lazy"><span>Nutrithm</span></a>
+      <a class="card" href="../respire/index.html"><img src="../respire/cover.webp" alt="" loading="lazy"><span>Respire</span></a>
     </div>
   </section>
+<script>
+(function () {
+  var pool = [{"slug": "bajaj", "title": "Infinity Display 2.0", "cover": "cover.webp"}, {"slug": "nutrithm", "title": "Nutrithm", "cover": "cover.webp"}, {"slug": "respire", "title": "Respire", "cover": "cover.webp"}];
+  for (var i = pool.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = pool[i]; pool[i] = pool[j]; pool[j] = t; }
+  var cards = document.querySelectorAll('.others .grid .card');
+  cards.forEach(function (a, k) {
+    var o = pool[k]; if (!o) return;
+    a.href = '../' + o.slug + '/index.html';
+    a.querySelector('img').src = '../' + o.slug + '/' + o.cover;
+    a.querySelector('span').textContent = o.title;
+  });
+})();
+</script>
+
 </main>
 
 <script>
@@ -1071,5 +1091,3 @@
 </script>
 </body>
 </html>
-
-</body></html>

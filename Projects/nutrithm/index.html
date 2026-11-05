@@ -1,8 +1,9 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!doctype html>
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="dark">
+<script>try{['portfolio-theme','nutrithm-theme','nutrithm-appearance'].forEach(function(k){localStorage.removeItem(k)})}catch(e){}document.documentElement.setAttribute('data-theme','dark');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>publish ready nutrithm</title>
 <style>
@@ -278,6 +279,15 @@
       scroll-behavior: auto !important;
     }
   }
+
+  /* Explore more: cover images in the cards */
+  .others .grid .card { overflow: hidden; }
+  .others .grid .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.7); transition: filter .5s var(--ease), transform .6s var(--ease); }
+  .others .grid .card:hover img, .others .grid .card:focus-visible img { filter: none; transform: scale(1.03); }
+  .others .grid .card span {
+    left: 0; right: 0; bottom: 0; padding: 1.6rem 1rem .8rem;
+    color: #ededed; background: linear-gradient(transparent, rgba(0,0,0,.72));
+  }
 </style>
 </head>
 <body>
@@ -324,7 +334,7 @@
   <h1>Nutrithm</h1>
   <dl class="meta">
     <div><dt>Module</dt><dd>Design project 1</dd></div>
-    <div><dt>Tag</dt><dd>systems thinking, Graphical user interface design, UI and UX design</dd></div>
+    <div><dt>Tag</dt><dd>Graphical User Interface Design, UI Design, System Thinking, App Design</dd></div>
     <div><dt>Guide</dt><dd>Dr. Mamata N. Rao and Prof. Athul Dinesh</dd></div>
     <div><dt>Duration</dt><dd>3 weeks</dd></div>
   </dl>
@@ -513,7 +523,7 @@
 .nutrithm-case :focus-visible{ outline: 2px solid var(--brand); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce){.nutrithm-case *{ transition-duration: 0ms !important; animation-duration: 0ms !important; }}
 .nutrithm-case .nc{ max-width: 960px; margin: 0 auto; padding: clamp(5rem, 14vh, 8rem) clamp(1.25rem, 3vw, 2rem) clamp(5rem, 12vh, 7rem); }
-.nutrithm-case .nc .section-label{ margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand); }
+.nutrithm-case .nc .section-label{ margin: 0; font-family: var(--display); font-size: 13px; font-weight: 400; letter-spacing: .01em; text-transform: none; color: var(--brand); }
 .nutrithm-case .nc h2{ margin: 14px 0 0; font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.15; letter-spacing: -0.02em; font-weight: 800; color: var(--ink); }
 .nutrithm-case .nc p{ margin: 18px 0 0; max-width: 640px; font-size: 19px; line-height: 1.6; color: var(--ink-secondary); }
 .nutrithm-case .image-slot{
@@ -554,12 +564,12 @@
 .nutrithm-case .nowrap{ white-space: nowrap; }
 .nutrithm-case .nc .case-sub{ margin: 28px 0 0; font-size: 17px; font-weight: 700; color: var(--ink); }
 .nutrithm-case .hypothesis, .nutrithm-case .insight{ max-width: 960px; margin: 0 auto; padding: clamp(3rem, 8vh, 5rem) clamp(1.25rem, 3vw, 2rem); min-height: 100vh; min-height: 100svh; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; text-align: left; }
-.nutrithm-case .hypothesis .section-label, .nutrithm-case .insight .section-label{ margin: 0 0 clamp(2rem, 6vh, 3.5rem); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand); }
+.nutrithm-case .hypothesis .section-label, .nutrithm-case .insight .section-label{ margin: 0 0 clamp(2rem, 6vh, 3.5rem); font-family: var(--display); font-size: 13px; font-weight: 400; letter-spacing: .01em; text-transform: none; color: var(--brand); }
 .nutrithm-case .insight-text + .insight-text{ margin-top: clamp(1.5rem, 4vh, 2.5rem); }
 .nutrithm-case .hypothesis-text, .nutrithm-case .insight-text{ max-width: 760px; margin: 0 auto; text-align: center; font-size: clamp(1.4rem, 3vw, 2.1rem); line-height: 1.35; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); }
 .nutrithm-case .insight-link{ margin: clamp(1.25rem, 3vh, 2rem) 0 0; text-align: center; font-size: 14px; }
 .nutrithm-case .intervention{ max-width: 960px; margin: 0 auto; padding: clamp(4rem, 12vh, 7rem) clamp(1.25rem, 3vw, 2rem); box-sizing: border-box; }
-.nutrithm-case .intervention .section-label{ margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand); }
+.nutrithm-case .intervention .section-label{ margin: 0; font-family: var(--display); font-size: 13px; font-weight: 400; letter-spacing: .01em; text-transform: none; color: var(--brand); }
 .nutrithm-case .intervention-list{ list-style: none; margin: clamp(2rem, 6vh, 3.5rem) 0 0; padding: 0; border-top: 1px solid var(--separator); }
 .nutrithm-case .intervention-list li{ display: grid; grid-template-columns: 56px 1fr; gap: 1rem; padding: clamp(1.25rem, 3vh, 1.75rem) 0; border-bottom: 1px solid var(--separator); }
 .nutrithm-case .iv-num{ font-size: 13px; font-weight: 700; color: var(--brand); padding-top: 4px; font-variant-numeric: tabular-nums; }
@@ -573,7 +583,7 @@
 .nutrithm-case .iv-caption{ margin: 1.25rem 0 0; max-width: 60ch; color: var(--ink-secondary); }
 .nutrithm-case .iv-lede{ margin: clamp(1.5rem, 4vh, 2rem) auto 0; max-width: 60ch; text-align: center; font-size: clamp(1.15rem, 2.2vw, 1.4rem); font-weight: 700; line-height: 1.35; color: var(--ink); }
 .nutrithm-case .competitors{ max-width: 960px; margin: 0 auto; padding: clamp(4rem, 12vh, 7rem) clamp(1.25rem, 3vw, 2rem); box-sizing: border-box; }
-.nutrithm-case .competitors .section-label{ margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand); }
+.nutrithm-case .competitors .section-label{ margin: 0; font-family: var(--display); font-size: 13px; font-weight: 400; letter-spacing: .01em; text-transform: none; color: var(--brand); }
 .nutrithm-case .competitors-intro{ margin: 1rem 0 0; max-width: 62ch; color: var(--ink-secondary); }
 .nutrithm-case .app-grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(1rem, 3vw, 1.5rem); margin-top: clamp(2rem, 6vh, 3rem); }
 .nutrithm-case .app-card{ border-top: 1px solid var(--separator); padding-top: 1.25rem; }
@@ -589,7 +599,7 @@
 .nutrithm-case .competitors-src a{ color: inherit; }
 @media (max-width: 760px){.nutrithm-case .competitors{ padding-left: 16px; padding-right: 16px; }}
 .nutrithm-case .features{ max-width: 960px; margin: 0 auto; padding: clamp(4rem, 12vh, 7rem) clamp(1.25rem, 3vw, 2rem) 0; box-sizing: border-box; }
-.nutrithm-case .features .section-label{ margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand); }
+.nutrithm-case .features .section-label{ margin: 0; font-family: var(--display); font-size: 13px; font-weight: 400; letter-spacing: .01em; text-transform: none; color: var(--brand); }
 .nutrithm-case .features [fill="#F7F1E6"]{ fill: var(--ink); }
 .nutrithm-case .features [fill="#F08A6C"]{ fill: var(--brand); }
 .nutrithm-case .features [stroke="#F08A6C"]{ stroke: var(--brand); }
@@ -665,7 +675,7 @@ html.js-story .nutrithm-case .copy-slot{ left: calc(var(--dw) + 16px); width: au
 .nutrithm-case .copy .beat-no{ font-size: 1.2rem; }
 .nutrithm-case .copy p{ font-size: 15px; }}
 .nutrithm-case .ideation{ max-width: 1040px; margin: 0 auto; padding: clamp(4rem, 12vh, 7rem) clamp(1.25rem, 3vw, 2rem); box-sizing: border-box; }
-.nutrithm-case .ideation .section-label{ margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand); }
+.nutrithm-case .ideation .section-label{ margin: 0; font-family: var(--display); font-size: 13px; font-weight: 400; letter-spacing: .01em; text-transform: none; color: var(--brand); }
 .nutrithm-case .idea-track{ list-style: none; margin: clamp(2rem, 6vh, 3rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 190px); justify-content: space-between; column-gap: 24px; row-gap: 36px; }
 .nutrithm-case .idea-card{ margin: 0; min-width: 0; }
 .nutrithm-case .idea-shot{ width: 100%; aspect-ratio: 390 / 844; border-radius: 28px; overflow: hidden; background-color: #0B0908; background-size: cover; background-position: center top; box-shadow: 0 0 0 1px var(--line-strong); }
@@ -683,7 +693,7 @@ html.js-story .nutrithm-case .copy-slot{ left: calc(var(--dw) + 16px); width: au
 .nutrithm-case .idea-text p{ font-size: 14px; }}
 @media (max-width: 760px){.nutrithm-case .ideation{ padding-left: 16px; padding-right: 16px; }}
 .nutrithm-case .research{ max-width: 960px; margin: 0 auto; padding: clamp(4rem, 12vh, 7rem) clamp(1.25rem, 3vw, 2rem); box-sizing: border-box; }
-.nutrithm-case .research .section-label{ margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand); }
+.nutrithm-case .research .section-label{ margin: 0; font-family: var(--display); font-size: 13px; font-weight: 400; letter-spacing: .01em; text-transform: none; color: var(--brand); }
 .nutrithm-case .evidence{ list-style: none; margin: clamp(2rem, 6vh, 3.5rem) 0 0; padding: 0; border-top: 1px solid var(--separator); }
 .nutrithm-case .ev{ display: grid; grid-template-columns: 56px minmax(0, 1fr) 240px; gap: 24px; align-items: start; padding: clamp(22px, 3.4vh, 30px) 0; border-bottom: 1px solid var(--separator); }
 .nutrithm-case .ev-num{ padding-top: 5px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; color: var(--brand); }
@@ -706,13 +716,13 @@ html.js-story .nutrithm-case .copy-slot{ left: calc(var(--dw) + 16px); width: au
 .nutrithm-case .rh-labels{ margin-top: 0.25rem; }
 .nutrithm-case .rh-time{ margin-top: 0.25rem; }}
 .nutrithm-case .prototype{ max-width: 1040px; margin: 0 auto; padding: clamp(4rem, 12vh, 7rem) clamp(1.25rem, 3vw, 2rem); box-sizing: border-box; text-align: left; }
-.nutrithm-case .prototype .section-label{ margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand); }
+.nutrithm-case .prototype .section-label{ margin: 0; font-family: var(--display); font-size: 13px; font-weight: 400; letter-spacing: .01em; text-transform: none; color: var(--brand); }
 .nutrithm-case .proto-wrap{ position: relative; height: min(88vh, 820px); aspect-ratio: 422 / 932; max-width: 100%; margin: clamp(1.5rem, 4vh, 2.5rem) auto 0; }
 .nutrithm-case .proto-frame{ display: block; width: 100%; height: 100%; border: 0; background: transparent; pointer-events: none; }
 .nutrithm-case .proto-wrap.is-active .proto-frame{ pointer-events: auto; }
 @media (max-width: 760px){.nutrithm-case .prototype{ padding-left: 16px; padding-right: 16px; }}
 .nutrithm-case .decisions{ box-sizing: border-box; max-width: 960px; min-height: 100vh; min-height: 100svh; margin: 0 auto; padding: clamp(1.25rem, 3svh, 2.5rem) clamp(1.25rem, 3vw, 2rem); display: flex; flex-direction: column; justify-content: center;  --cmp-w: clamp(170px, 23svh, 230px); }
-.nutrithm-case .decisions .section-label{ margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand); }
+.nutrithm-case .decisions .section-label{ margin: 0; font-family: var(--display); font-size: 13px; font-weight: 400; letter-spacing: .01em; text-transform: none; color: var(--brand); }
 .nutrithm-case .decisions-head{ margin: clamp(0.9rem, 2svh, 1.25rem) 0 0; font-size: clamp(1.6rem, 3.4vw, 2.4rem); line-height: 1.15; letter-spacing: -0.02em; font-weight: 800; color: var(--ink); }
 .nutrithm-case .cmp-grid{ display: grid; grid-template-columns: repeat(2, minmax(0, var(--cmp-w))); justify-content: center; gap: clamp(20px, 3vw, 32px); margin: clamp(2rem, 5svh, 2.75rem) 0 0; }
 .nutrithm-case .cmp-card{ margin: 0; padding: 0; overflow: hidden; border-radius: 24px; background: var(--bg-raised); box-shadow: 0 0 0 1px var(--line-strong); }
@@ -823,7 +833,7 @@ try { var t = localStorage.getItem('nutrithm-theme'); if (t === 'light' || t ===
 
   <section class="nc" aria-labelledby="overview-title">
     <div class="overview-text">
-    <p class="section-label">Overview</p>
+    <p class="section-label">1. Overview</p>
     <h2 id="overview-title">An app that tells you not just what to eat, but when to eat.</h2>
     <p>Nutrithm follows your body's daily rhythm and digestion, so the food you see matches the time of day. It also takes your health conditions and food preferences into account, without calorie counting.</p>
     </div>
@@ -834,7 +844,7 @@ try { var t = localStorage.getItem('nutrithm-theme'); if (t === 'light' || t ===
 
   <section class="nc problem" aria-labelledby="problem-title">
     <div class="overview-text">
-      <p class="section-label">How I arrived at this brief</p>
+      <p class="section-label">2. How i arrived at this brief</p>
       <h2 id="problem-title">Started with systems thinking</h2>
       <p>The idea started in a group systems-thinking exercise on eating healthy food, where we identified positive and negative loops about having a healthy diet.</p>
     </div>
@@ -845,7 +855,7 @@ try { var t = localStorage.getItem('nutrithm-theme'); if (t === 'light' || t ===
 
   <section class="nc loop-section" aria-labelledby="loop-title">
     <div class="overview-text">
-      <p class="section-label">The Vicious Loop</p>
+      <p class="section-label">3. The vicious loop</p>
       <h2 id="loop-title">One loop stuck in my mind:<br><span class="nowrap">Loop of Metabolic Crisis</span></h2>
       <p>Each step feeds the next, so the cycle keeps reinforcing itself.</p>
     </div>
@@ -885,12 +895,12 @@ try { var t = localStorage.getItem('nutrithm-theme'); if (t === 'light' || t ===
   </section>
 
   <section class="hypothesis" aria-labelledby="hypothesis-title">
-    <p class="section-label" id="hypothesis-title">Hypothesis</p>
+    <p class="section-label" id="hypothesis-title">4. Hypothesis</p>
     <p class="hypothesis-text">Refined carbs and a sedentary life push the body to store harmful fat, which may lead to diabetes, hypertension, PCOS, fatty liver and high cholesterol.</p>
   </section>
 
   <section class="research" aria-labelledby="research-label">
-    <p class="section-label" id="research-label">Research insight</p>
+    <p class="section-label" id="research-label">5. Research insight</p>
     <ol class="evidence">
       <li class="ev">
         <span class="ev-num" aria-hidden="true">01</span>
@@ -951,14 +961,14 @@ try { var t = localStorage.getItem('nutrithm-theme'); if (t === 'light' || t ===
   </section>
 
   <section class="insight" aria-labelledby="insight-title">
-    <p class="section-label" id="insight-title">Key insight</p>
+    <p class="section-label" id="insight-title">6. Key insight</p>
     <p class="insight-text">In Indian adults, higher body fat, high carbohydrate intake and low physical activity are associated with diabetes and high cholesterol. Links to hypertension, PCOS and fatty liver need further evidence.</p>
     <p class="insight-text">Your body clock changes how the same meal is handled, so meal time is worth tracking.</p>
     <p class="insight-link"><a class="ev-link" href="https://drive.google.com/file/d/1bAX_F0SeK8a9Xf6qM7XEID_i7Wv1bx-W/view?usp=sharing" target="_blank" rel="noopener noreferrer">Full research document ↗</a></p>
   </section>
 
   <section class="intervention" aria-labelledby="intervention-title">
-    <p class="section-label" id="intervention-title">Design intervention</p>
+    <p class="section-label" id="intervention-title">7. Design intervention</p>
     <figure class="loop-figure iv-loop">
       <svg class="loop-svg" viewBox="0 0 1040 760" role="img" aria-label="The vicious cycle of metabolic crisis: dietary mismatch leads to fat build-up, which leads to insulin resistance, which leads to hunger, which feeds back into dietary mismatch. Leverage point marked at dietary mismatch.">
         <defs>
@@ -998,7 +1008,7 @@ try { var t = localStorage.getItem('nutrithm-theme'); if (t === 'light' || t ===
   </section>
 
   <section class="competitors" aria-labelledby="competitors-title">
-    <p class="section-label" id="competitors-title">What other apps offer</p>
+    <p class="section-label" id="competitors-title">8. What other apps offer</p>
     <div class="app-grid">
       <article class="app-card">
         <img class="app-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAACAKADAAQAAAABAAACAAAAAAAL+LWFAAAw50lEQVR4Ae3dPbAsV4Ef8MFFiBxLuwqRCrKVqoyKAALYKpchWcOWHMFSKFtk2FCCDQUiNLaWbCk+IlTGS8K6XLUQoAhchZyZkhRiULxSLvf/3ddPo/vux8ydM+ejz6+r3rv3zp3bc87vnOn+9+nTPR9675NPvrezECBAgAABAlMJ/JupaquyBAgQIECAwD0BAUBHIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAAEBQB8gQIAAAQITCggAEza6KhMgQIAAAQFAHyBAgAABAhMKCAATNroqEyBAgAABAUAfIECAAAECEwoIABM2uioTIECAAIEPT0/w2J/vdj/71fQMzQBeemG3++d/avbyXpgAAQKzChgBmLXl1ZsAAQIEphYQAKZufpUnQIAAgVkFBIBZW76Xer/7Ti8lUQ4CBAhMJSAATNXcnVX2T/9vt/v1v3RWKMUhQIDAHAICwBzt3Gctv/edPsulVAQIEJhAQACYoJG7rOI//w9H/102jEIRIDCLgAAwS0v3Vs9/fKW3EikPAQIEphIQAKZq7k4q+4//bbfL+X8LAQIECDQTEACa0U/6wtnxv/rjSSuv2gQIEOhHQADopy3mKEmO/t/51znqqpYECBDoWEAA6LhxNle0HP277e/mmlWFCBAYU0AAGLPdxiz1818as9xKTYAA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01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygkIAOUsrYkAAQIECAwjIAAM01QKSoAAAQIEygn8f7sW4GNNEZNwAAAAAElFTkSuQmCC" alt="Zero app logo" width="48" height="48">
@@ -1039,7 +1049,7 @@ try { var t = localStorage.getItem('nutrithm-theme'); if (t === 'light' || t ===
     </div>
     <p class="competitors-note">None of the three plans meals around the body clock. Zero's fasting timer is closest, but it tracks fasting windows, not circadian timing. The store pages do not mention Indian foods.</p>  </section>
   <section class="decisions" aria-labelledby="decisions-title">
-    <p class="section-label" id="decisions-title">Design decisions</p>
+    <p class="section-label" id="decisions-title">9. Design decisions</p>
     <h2 class="decisions-head">SAME CALORIES. DIFFERENT NUTRITION.</h2>
     <div class="cmp-grid">
       <article class="cmp-card">
@@ -1069,7 +1079,7 @@ try { var t = localStorage.getItem('nutrithm-theme'); if (t === 'light' || t ===
     </div>
     <p class="decisions-note">Calories measure energy, but nutrient mapping reveals composition, so the app design should look beyond calories to help users understand what their food contributes to their diet.</p>
     <div class="principles">
-      <p class="section-label principles-label">Design Decisions</p>
+      <p class="section-label principles-label">10. Design decisions</p>
       <div class="principles-grid" id="principles-grid">
         <article class="principle">
           <span class="principle-no">01</span>
@@ -1099,7 +1109,7 @@ try { var t = localStorage.getItem('nutrithm-theme'); if (t === 'light' || t ===
     </div>
   </section>
   <section class="ideation" aria-labelledby="ideation-title">
-    <p class="section-label" id="ideation-title">Ideation</p>
+    <p class="section-label" id="ideation-title">11. Ideation</p>
     <ol class="idea-track">
       <li class="idea-card">
         <div class="idea-shot shot-idea-lofi" role="img" aria-label="Initial app visualization of the home screen"></div>
@@ -1132,7 +1142,7 @@ try { var t = localStorage.getItem('nutrithm-theme'); if (t === 'light' || t ===
     </ol>
   </section>
   <section class="features" aria-labelledby="features-title">
-    <p class="section-label" id="features-title">Nutrithm and Its Features</p>
+    <p class="section-label" id="features-title">12. Nutrithm and its features</p>
     <div class="story" id="story" data-frames="16" style="--frames:16">
       <div class="stage" data-phase="logo">
         <div data-frame="1" class="lockup lockup--hero story-brand"><div class="brand-icon"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" ><rect width="1024" height="1024" rx="232" fill="none"></rect><g transform="translate(512 512)"><circle r="366" fill="none" stroke="#F08A6C" stroke-width="50"></circle><circle r="238" fill="none" stroke="#F08A6C" stroke-width="22"></circle><g transform="translate(0 16)"><g class="h-fork" transform="rotate(52)"><line x1="0" y1="0" x2="0" y2="-178" stroke="#1A1714" stroke-width="78" stroke-linecap="round"></line><path d="M -39 -176 Q -39 -210 -47 -222 L 47 -222 Q 39 -210 39 -176 Z" fill="#1A1714" stroke="#1A1714" stroke-width="36" stroke-linejoin="round"></path><g stroke="#1A1714" stroke-linecap="round" stroke-width="58"><line x1="-36" y1="-216" x2="-36" y2="-293"></line><line x1="0" y1="-216" x2="0" y2="-293"></line><line x1="36" y1="-216" x2="36" y2="-293"></line></g></g><g class="h-spoon" transform="rotate(-52)"><line x1="0" y1="0" x2="0" y2="-148" stroke="#1A1714" stroke-width="78" stroke-linecap="round"></line><ellipse cx="0" cy="-210" rx="56" ry="72" fill="#1A1714" stroke="#1A1714" stroke-width="36"></ellipse></g><circle r="48" fill="#1A1714"></circle><g class="h-fork" transform="rotate(52)"><line x1="0" y1="0" x2="0" y2="-178" stroke="#F08A6C" stroke-width="42" stroke-linecap="round"></line><path d="M -21 -176 Q -21 -210 -47 -222 L 47 -222 Q 21 -210 21 -176 Z" fill="#F08A6C"></path><g stroke="#F08A6C" stroke-linecap="round" stroke-width="22"><line x1="-36" y1="-216" x2="-36" y2="-293"></line><line x1="0" y1="-216" x2="0" y2="-293"></line><line x1="36" y1="-216" x2="36" y2="-293"></line></g></g><g class="h-spoon" transform="rotate(-52)"><line x1="0" y1="0" x2="0" y2="-148" stroke="#F08A6C" stroke-width="42" stroke-linecap="round"></line><ellipse cx="0" cy="-210" rx="56" ry="72" fill="#F08A6C"></ellipse></g><circle class="h-pivot" r="30" fill="#F08A6C"></circle></g></g></svg></div><div class="brand-name"><svg xmlns="http://www.w3.org/2000/svg" viewBox="10 52 842 158"  role="img" aria-label="Nutrithm"><path fill="#F7F1E6" d="M134.4 73.0L134.4 204.0L106.4 198.2L41.6 106.6L42.0 204.0L14.0 198.2L14.0 65.0L41.6 73.0L106.4 163.6L106.4 65.0ZM224.2 102.8L249.2 108.4L249.2 204.2L224.2 198.6L224.2 188.6Q208.2 205.0 194.6 204.0Q188.2 203.6 171.8 189.2Q155.4 174.8 154.4 169.2Q153.6 164.0 153.6 102.8L178.4 108.4Q177.4 177.2 179.4 181.4Q183.4 187.0 191.5 185.0Q199.6 183.0 209.5 173.6Q219.4 164.2 224.2 153.0ZM265.8 116.6L259.8 102.6L276.2 102.6L276.2 81.0L300.8 86.6L300.8 102.6L325.2 102.6L331.2 116.6L300.8 116.6L300.8 142.0Q300.8 144.2 300.8 148.6Q300.8 154.0 300.7 159.4Q300.6 164.8 301.3 169.6Q302.0 174.4 303.0 178.4Q304.0 182.4 306.4 184.8Q308.8 187.2 312.2 188.0Q315.6 188.8 320.9 186.9Q326.2 185.0 333.0 180.6L338.4 186.8Q326.8 197.4 319.0 201.6Q313.0 205.0 302.5 200.5Q292.0 196.0 284.1 187.9Q276.2 179.8 276.2 173.8L276.2 116.6ZM376.2 108.2L376.2 123.0Q390.8 100.0 401.0 100.0Q406.0 100.0 417.8 105.1Q429.6 110.2 437.6 115.6L423.8 135.6Q411.4 126.4 402.3 125.5Q393.2 124.6 387.8 129.1Q382.4 133.6 376.2 143.6L376.2 204.0L351.2 198.4L351.2 102.6ZM472.8 108.2L472.8 204.0L447.8 198.4L447.8 102.6ZM492.2 116.6L486.2 102.6L502.6 102.6L502.6 81.0L527.2 86.6L527.2 102.6L551.6 102.6L557.6 116.6L527.2 116.6L527.2 142.0Q527.2 144.2 527.2 148.6Q527.2 154.0 527.1 159.4Q527.0 164.8 527.7 169.6Q528.4 174.4 529.4 178.4Q530.4 182.4 532.8 184.8Q535.2 187.2 538.6 188.0Q542.0 188.8 547.3 186.9Q552.6 185.0 559.4 180.6L564.8 186.8Q553.2 197.4 545.4 201.6Q539.4 205.0 528.9 200.5Q518.4 196.0 510.5 187.9Q502.6 179.8 502.6 173.8L502.6 116.6ZM602.4 61.8L602.4 117.4Q621.0 99.6 634.6 100.6Q641.0 101.0 657.1 116.5Q673.2 132.0 674.2 137.6Q675.0 142.8 675.0 204.0L650.2 198.4Q651.4 129.8 649.2 125.8Q645.4 118.8 636.9 121.7Q628.4 124.6 619.3 132.1Q610.2 139.6 602.4 149.0L602.4 204.0L577.4 198.4L577.4 56.2ZM717.8 108.2L717.8 113.6Q732.0 99.8 744.0 100.6Q747.8 100.8 756.4 107.7Q765.0 114.6 772.8 123.0Q791.6 99.6 807.6 100.6Q814.0 101.0 830.1 116.5Q846.2 132.0 847.2 137.6Q848.0 142.8 848.0 204.0L823.2 198.4Q824.4 129.6 822.2 125.6Q819.8 121.2 815.3 121.0Q810.8 120.8 805.5 124.0Q800.2 127.2 794.8 132.1Q789.4 137.0 784.0 143.2Q784.4 154.2 784.4 204.0L759.6 198.4Q760.8 129.6 758.6 125.6Q755.6 121.2 751.1 121.0Q746.6 120.8 740.6 124.7Q734.6 128.6 728.9 134.1Q723.2 139.6 717.8 146.4L717.8 204.0L692.8 198.4L692.8 102.6Z"></path><circle class="wm-sun" cx="460.6" cy="76.1" r="16.1" fill="#F08A6C"></circle></svg></div></div>
@@ -1324,7 +1334,7 @@ try { var t = localStorage.getItem('nutrithm-theme'); if (t === 'light' || t ===
     </div>
   </section>
   <section class="prototype" id="prototype" aria-labelledby="prototype-title">
-    <p class="section-label" id="prototype-title">Final prototype</p>
+    <p class="section-label" id="prototype-title">13. Final prototype</p>
     <div class="proto-wrap">
     <iframe class="proto-frame" id="proto" srcdoc="<!doctype html>
 <html lang=&quot;en&quot;>
@@ -1391,7 +1401,7 @@ html[data-theme=&quot;dark&quot;] .preview-tools button:hover { background: #343
   var KEY = 'nutrithm-appearance';
   var theme = 'light';
   var saved = null; try { saved = localStorage.getItem(KEY); } catch (e) {}
-  theme = saved === 'dark' || saved === 'light' ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  theme = 'dark';
   var openTab = null;
 
   function blobURL(text, type) { return URL.createObjectURL(new Blob([text], { type: type })); }
@@ -1817,11 +1827,25 @@ html[data-theme=&quot;dark&quot;] .preview-tools button:hover { background: #343
   <section class="others" aria-labelledby="others-title">
     <h2 id="others-title">Explore other projects</h2>
     <div class="grid">
-      <a class="card" href="#"><span>Project 1</span></a>
-      <a class="card" href="#"><span>Project 2</span></a>
-      <a class="card" href="#"><span>Project 3</span></a>
+      <a class="card" href="../bajaj/index.html"><img src="../bajaj/cover.webp" alt="" loading="lazy"><span>Infinity Display 2.0</span></a>
+      <a class="card" href="../respire/index.html"><img src="../respire/cover.webp" alt="" loading="lazy"><span>Respire</span></a>
+      <a class="card" href="../bhoomi/index.html"><img src="../bhoomi/cover.webp" alt="" loading="lazy"><span>Bhoomi</span></a>
     </div>
   </section>
+<script>
+(function () {
+  var pool = [{"slug": "bajaj", "title": "Infinity Display 2.0", "cover": "cover.webp"}, {"slug": "respire", "title": "Respire", "cover": "cover.webp"}, {"slug": "bhoomi", "title": "Bhoomi", "cover": "cover.webp"}];
+  for (var i = pool.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = pool[i]; pool[i] = pool[j]; pool[j] = t; }
+  var cards = document.querySelectorAll('.others .grid .card');
+  cards.forEach(function (a, k) {
+    var o = pool[k]; if (!o) return;
+    a.href = '../' + o.slug + '/index.html';
+    a.querySelector('img').src = '../' + o.slug + '/' + o.cover;
+    a.querySelector('span').textContent = o.title;
+  });
+})();
+</script>
+
 </main>
 
 <script>
@@ -1872,5 +1896,3 @@ html[data-theme=&quot;dark&quot;] .preview-tools button:hover { background: #343
 </script>
 </body>
 </html>
-
-</body></html>
