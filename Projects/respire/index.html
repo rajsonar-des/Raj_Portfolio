@@ -293,6 +293,16 @@
     color: #ededed; background: linear-gradient(transparent, rgba(0,0,0,.72));
   }
   @media (max-width: 640px) { .others .grid { gap: .6rem; } .others .grid .card span { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; } }
+
+  /* Tools used: one quiet line between the case study and Explore other projects */
+  .tools-used { margin-top: 4rem; display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1.25rem; font-size: .82rem; color: var(--text-2); }
+  .tools-used h2 { margin: 0 .25rem 0 0; font-family: var(--display); font-size: .68rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--muted, var(--text-2)); }
+  .tools-used ul { display: contents; list-style: none; }
+  .tools-used li { display: inline-flex; align-items: center; gap: .45rem; }
+  .tools-used img { display: block; height: 18px; width: auto; opacity: .85; }
+  .tools-used .tu-note { color: var(--muted, var(--text-2)); }
+  [data-theme="light"] .tools-used img { filter: invert(1); }
+  .tools-used + .others { margin-top: 4rem; }
 </style>
 </head>
 <body>
@@ -2832,6 +2842,11 @@
   setTimeout(function () { inject(); fit(); sync(); }, 800);
 })();
 </script></article>
+
+  <section class="tools-used" aria-labelledby="tools-used-title">
+    <h2 id="tools-used-title">Tools used</h2>
+    <ul><li><img src="../../assets/tools/figma.png" alt="">Figma</li><li><img src="../../assets/tools/claude.png" alt="">Claude Design</li><li><img src="../../assets/tools/chatgpt.svg" alt="">ChatGPT</li></ul>
+  </section>
 
   <section class="others" aria-labelledby="others-title">
     <h2 id="others-title">Explore other projects</h2>
