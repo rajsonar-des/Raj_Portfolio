@@ -427,8 +427,8 @@
   .info-grid dd a:hover, .info-grid dd a:focus-visible { border-bottom-color: var(--fg); }
 
   /* Hero fits one screen: photo scales with the window height so the name, tagline and scroll cue stay in view */
-  section#home.screen { min-height: 100vh; min-height: 100svh; padding: 88px 0 84px; }
-  .portrait { width: min(300px, 80vw, calc((100vh - 350px) / 1.235)); width: min(300px, 80vw, calc((100svh - 350px) / 1.235)); }
+  section#home.screen { min-height: 100vh; min-height: 100svh; padding: 80px 0 76px; }
+  .portrait { width: min(360px, 82vw, calc((100vh - 312px) / 1.235)); width: min(360px, 82vw, calc((100svh - 312px) / 1.235)); }
   .photo-label { margin-top: 1.75rem; }
   .tagline { margin-top: 1.6rem; }
   /* minimal scroll cue: a thin line with a dot drifting down */
@@ -1070,8 +1070,16 @@ function build() {
   VW = innerWidth; VH = innerHeight;
   cv.width = VW * DPR; cv.height = VH * DPR;
   const narrow = VW < 720, aspect = COLS / ROWS;
-  const _ph = (document.querySelector('.portrait') || {}).offsetHeight || 0;
-  const W = narrow ? VW * .7 : Math.min(VW * .46, (_ph ? _ph * 1.17 : VH * .62) * aspect);
+  const _pe = document.querySelector('.portrait'), _ph = _pe ? _pe.offsetHeight : 0;
+  // the intro is centred on the photo: keep ENGINEER above and Designer below inside the window
+  let _cap = Infinity;
+  if (_pe && _ph) {
+    const _r = _pe.getBoundingClientRect(), _pc = _r.top + scrollY + _ph / 2;
+    const _eh = (document.getElementById('engineer') || {}).offsetHeight || 30, _dh = (document.getElementById('designer') || {}).offsetHeight || 90;
+    const _room = Math.min(_pc - _eh - 12, VH - _pc - _dh - 12);
+    _cap = Math.max(120, _room / (.5 + 6.6 / ROWS)) * aspect;
+  }
+  const W = Math.min(narrow ? VW * .7 : Math.min(VW * .46, (_ph ? _ph * 1.17 : VH * .62) * aspect), _cap);
   const s = W / COLS, H = s * ROWS;
   const cx = VW / 2, cy = VH / 2;
   const left = cx - W / 2, right = cx + W / 2, top = cy - H / 2, bot = cy + H / 2;
