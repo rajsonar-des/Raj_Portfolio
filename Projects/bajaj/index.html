@@ -1050,6 +1050,11 @@
 .nutrithm-case.js [data-reveal].is-in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce){.nutrithm-case.js [data-reveal] { opacity: 1; transform: none; transition: none; }
 .nutrithm-case .scroll-progress span { transition: none; }}
+
+  /* Persona photos: scale down to fit the screen instead of being cropped */
+  .nutrithm-case .persona-photo img { width: auto; max-width: 100%; height: auto; max-height: 82svh; aspect-ratio: auto; object-fit: contain; align-self: flex-start; }
+  .nutrithm-case .persona-sec.flip .persona-photo img { align-self: flex-end; }
+  @media (max-width: 900px) { .nutrithm-case .persona-photo img, .nutrithm-case .persona-sec.flip .persona-photo img { max-height: 70svh; align-self: center; } }
 </style>
 
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
