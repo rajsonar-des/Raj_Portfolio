@@ -325,7 +325,7 @@
   @media (max-width: 640px) {
     body { overflow-x: clip; }
     .tagline { white-space: normal; max-width: 92vw; line-height: 1.6; }
-    .tagline .fancy { font-size: 1.6rem; }
+    .tagline .fancy { font-size: 2.2rem; }
     .photo-label { font-size: 2rem; }
     header.top { padding: .9rem 1.25rem; }
     main { padding: 0 1.25rem; }
@@ -425,6 +425,23 @@
   /* email and phone in the personal info open compose or call */
   .info-grid dd a { border-bottom: 1px solid transparent; transition: border-color .3s var(--ease), color .3s var(--ease); }
   .info-grid dd a:hover, .info-grid dd a:focus-visible { border-bottom-color: var(--fg); }
+
+  /* Hero fits one screen: photo scales with the window height so the name, tagline and scroll cue stay in view */
+  section#home.screen { min-height: 100vh; min-height: 100svh; padding: 88px 0 84px; }
+  .portrait { width: min(300px, 80vw, calc((100vh - 350px) / 1.235)); width: min(300px, 80vw, calc((100svh - 350px) / 1.235)); }
+  .photo-label { margin-top: 1.75rem; }
+  .tagline { margin-top: 1.6rem; }
+  /* minimal scroll cue: a thin line with a dot drifting down */
+  #home > .scroll-cue { position: absolute; left: 50%; bottom: 22px; width: 24px; height: 44px; margin-left: -12px; display: flex; justify-content: center; opacity: .55; transition: opacity .6s var(--ease); }
+  #home > .scroll-cue:hover, #home > .scroll-cue:focus-visible { opacity: 1; }
+  #home > .scroll-cue:focus-visible { outline: 1px solid var(--muted); outline-offset: 4px; border-radius: 2px; }
+  .scroll-cue::before { content: ""; width: 1px; height: 100%; background: linear-gradient(var(--muted), transparent); }
+  .scroll-cue span { position: absolute; top: 0; left: 50%; width: 3px; height: 3px; margin-left: -1.5px; border-radius: 50%; background: var(--fg); animation: cue-drop 2.2s var(--ease) infinite; }
+  @keyframes cue-drop { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translateY(40px); opacity: 0; } }
+  #home > .scroll-cue.gone { opacity: 0; pointer-events: none; }
+  body.intro #home > .scroll-cue { opacity: 0; }
+  @media (prefers-reduced-motion: reduce) { .scroll-cue span { animation: none; top: 50%; } }
+  @media (max-height: 520px) { #home > .scroll-cue { display: none; } }
 </style>
 <style>
   .grid .card.cover { padding: 0; overflow: hidden; }
@@ -726,6 +743,7 @@
       </div>
       <div class="frame chart" role="img" aria-label="Work area chart"></div>
     </div>
+    <a class="scroll-cue" href="#projects" aria-label="Scroll to projects"><span></span></a>
   </section>
 
   <div class="ticker" aria-label="Roles and interests">
@@ -1052,7 +1070,8 @@ function build() {
   VW = innerWidth; VH = innerHeight;
   cv.width = VW * DPR; cv.height = VH * DPR;
   const narrow = VW < 720, aspect = COLS / ROWS;
-  const W = narrow ? VW * .7 : Math.min(VW * .46, VH * .62 * aspect);
+  const _ph = (document.querySelector('.portrait') || {}).offsetHeight || 0;
+  const W = narrow ? VW * .7 : Math.min(VW * .46, (_ph ? _ph * 1.17 : VH * .62) * aspect);
   const s = W / COLS, H = s * ROWS;
   const cx = VW / 2, cy = VH / 2;
   const left = cx - W / 2, right = cx + W / 2, top = cy - H / 2, bot = cy + H / 2;
@@ -1609,6 +1628,14 @@ addEventListener('resize', () => { if (isBg) fadeStageWithPhoto(); });
     }
     t.addEventListener('mouseenter', fit); t.addEventListener('focus', fit);
   });
+})();
+</script>
+
+<script>
+(function () {
+  var cue = document.querySelector('.scroll-cue'); if (!cue) return;
+  function upd() { cue.classList.toggle('gone', scrollY > 40); }
+  addEventListener('scroll', upd, { passive: true }); upd();
 })();
 </script>
 
