@@ -631,6 +631,13 @@
     font-family: var(--font); font-size: .8rem; line-height: 1.55; letter-spacing: .01em; color: var(--text-2);
     text-align: left; white-space: normal;
   }
+
+  /* achievements v2: medals 10% bigger; equal boxes with centred text (title line + detail) */
+  .medals .medal-wrap { width: 110px; height: 110px; margin-bottom: 9.1rem; }
+  .medals .medal-logo { width: 33px; height: 33px; }
+  .medals .achv-card { height: 5.9rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .3rem; text-align: center; padding: .8rem 1rem; }
+  .achv-card .achv-title { font-family: var(--display); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--fg); }
+  .achv-card .achv-text { display: block; }
   @media (max-width: 640px) { .medals { grid-template-columns: 13.5rem; } }
 </style>
 <style>
@@ -776,11 +783,11 @@
   <!-- Medals under the profile, each with its achievement written underneath -->
   <div class="medals" aria-label="Achievements">
     <span class="medal-wrap rv" style="--i:0" tabindex="0"><span class="medal"></span><span class="medal-logo l0"></span>
-      <span class="achv-card">Bajaj Veni Vidi Vinci design competition Finalist.</span></span>
+      <span class="achv-card"><span class="achv-title">Finalist</span><span class="achv-text">Bajaj Veni Vidi Vinci Design Competition</span></span></span>
     <span class="medal-wrap rv" style="--i:1" tabindex="0"><span class="medal"></span><span class="medal-logo l2"></span>
-      <span class="achv-card">Nominated and elected Treasurer of Bangalore Student Activity Committee.</span></span>
+      <span class="achv-card"><span class="achv-title">Elected Treasurer</span><span class="achv-text">Bangalore Student Activity Committee of NID</span></span></span>
     <span class="medal-wrap rv" style="--i:2" tabindex="0"><span class="medal"></span><span class="medal-logo l1"></span>
-      <span class="achv-card">Runner up, Interaction Design Day 2026 Designathon.</span></span>
+      <span class="achv-card"><span class="achv-title">2nd Prize</span><span class="achv-text">Interaction Design Day Designathon</span></span></span>
   </div>
 
   <!-- Role tags: a slow band between the profile and the projects -->
