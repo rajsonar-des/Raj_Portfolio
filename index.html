@@ -476,7 +476,7 @@
   .proj-tags span + span::before { content: "\00b7"; margin: 0 .8rem; opacity: .6; }
   .proj-tags { transition: color .4s var(--ease); }
   .proj:hover .proj-tags, .proj:focus-within .proj-tags { color: var(--fg); }
-  #projects .grid .card.cover img { filter: saturate(.6) blur(.9px); transition: filter .6s var(--ease); }
+  #projects .grid .card.cover img { filter: saturate(.6); transition: filter .6s var(--ease); }
   #projects .grid .card.cover:hover img, #projects .grid .card.cover:focus-visible img { filter: none; }
   #projects .grid .card.cover:hover, #projects .grid .card.cover:focus-visible { border-color: var(--red); box-shadow: var(--shadow-lift), var(--edge), 0 0 34px -10px rgba(224,52,60,.34); }
   /* touch screens have no hover: show the colour covers straight away */
