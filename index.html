@@ -384,6 +384,13 @@
 
   header.top, main > section { transition: opacity 1.4s var(--ease) .4s; }
   body.intro main > section, body.intro header.top { opacity: 0; pointer-events: none; }
+
+  /* intro lock: nothing but the brain shows until the photo appears, and the page cannot scroll meanwhile */
+  main > div, footer.site-copy { transition: opacity 1.4s var(--ease) .4s; }
+  body.intro main > div, body.intro footer.site-copy { opacity: 0; pointer-events: none; }
+  html { scrollbar-gutter: stable; }
+  html:has(body.intro), body.intro { overflow: hidden; }
+  body.intro { touch-action: none; overscroll-behavior: none; }
   /* once in the background, the brain scrolls with the page and sits behind the photo */
   #home { overflow: visible; }
   .stage.in-main { position: absolute; inset: auto; left: 0; top: 0; z-index: -1; }
@@ -543,7 +550,7 @@
   }
   .ticker-window::before { left: 0; -webkit-mask-image: linear-gradient(to right, #000, transparent); mask-image: linear-gradient(to right, #000, transparent); }
   .ticker-window::after { right: 0; -webkit-mask-image: linear-gradient(to left, #000, transparent); mask-image: linear-gradient(to left, #000, transparent); }
-  .ticker-run { display: flex; width: max-content; animation: ticker 84s linear infinite; }
+  .ticker-run { display: flex; width: max-content; animation: ticker 70s linear infinite; }
   .ticker-window:hover .ticker-run { animation-play-state: paused; }
   .ticker ul { display: flex; flex: none; margin: 0; padding: 0; list-style: none; }
   .ticker li {
@@ -636,6 +643,8 @@
   .medals .medal-wrap { width: 110px; height: 110px; margin-bottom: 9.1rem; }
   .medals .medal-logo { width: 33px; height: 33px; }
   .medals .achv-card { height: 5.9rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .3rem; text-align: center; padding: .8rem 1rem; }
+  .medals .achv-card { transition: border-color .4s var(--ease), box-shadow .4s var(--ease), transform .5s var(--ease); }
+  .medals .achv-card:hover, .medals .achv-card:focus-visible { border-color: var(--red); box-shadow: var(--shadow-lift), var(--edge), 0 0 34px -10px rgba(224,52,60,.34); }
   .achv-card .achv-title { font-family: var(--display); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--fg); }
   .achv-card .achv-text { display: block; }
   @media (max-width: 640px) { .medals { grid-template-columns: 13.5rem; } }
@@ -1614,8 +1623,6 @@ addEventListener('resize', () => { if (isBg) fadeStageWithPhoto(); });
     if (setW > 0 && (pos >= setW || pos <= 0)) setPos(pos);
     hold(2500);
   }, { passive: true });
-  wrap.addEventListener('mouseenter', function () { hovered = true; });
-  wrap.addEventListener('mouseleave', function () { hovered = false; hold(400); });
   wrap.addEventListener('focusin', function () { hovered = true; });
   wrap.addEventListener('focusout', function () { hovered = false; });
   track.addEventListener('touchstart', function () { hold(4000); }, { passive: true });
