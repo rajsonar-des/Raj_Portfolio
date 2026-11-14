@@ -585,7 +585,7 @@
 .nutrithm-case .case-img{ display: block; width: 100%; height: auto; max-height: 70vh; object-fit: contain; border-radius: 14px; }
 .nutrithm-case .loop-section{ display: block; }
 .nutrithm-case .loop-section .overview-text{ max-width: 640px; margin-bottom: clamp(2.5rem, 6vh, 3.5rem); }
-.nutrithm-case .loop-figure{ margin: 0; max-width: 960px; overflow-x: auto; }
+.nutrithm-case .loop-figure{ margin: 0 auto; max-width: 960px; overflow-x: auto; }
 .nutrithm-case .loop-svg{ display: block; width: 100%; height: auto; min-width: 820px; }
 .nutrithm-case .loop-node{ fill: var(--bg-raised); stroke: var(--line-strong); stroke-width: 1.5; }
 .nutrithm-case .loop-node-ext{ stroke-dasharray: 6 6; }
@@ -818,7 +818,7 @@ html.js-story .nutrithm-case .copy-slot{ left: calc(var(--dw) + 16px); width: au
 .nutrithm-case .title{ padding-top: clamp(1.25rem, 3.5vh, 2.5rem) !important; padding-bottom: clamp(0.5rem, 1.5vh, 1.5rem) !important; }
 .nutrithm-case .tools-slot{ display: flex; justify-content: flex-end; align-items: center; height: 44px; margin: clamp(1rem, 3vh, 1.75rem) 0 0; }
 .nutrithm-case .nc-tools{ position: static; top: auto; right: auto; z-index: auto; margin: 0; }
-.nutrithm-case .nc-tools.is-stuck{ position: fixed; top: 1rem; right: 1rem; z-index: 20; }
+.nutrithm-case .nc-tools.is-stuck{ position: fixed; top: 4.5rem; right: 1rem; z-index: 20; }
 .nutrithm-case .closing{ max-width: 1040px; margin: 0 auto; padding: clamp(3rem, 8vh, 5rem) clamp(1.25rem, 3vw, 2rem) clamp(5rem, 14vh, 8rem); box-sizing: border-box; text-align: center; }
 .nutrithm-case .closing-quote{ margin: 0 auto; max-width: 760px; text-wrap: balance; }
 .nutrithm-case .closing-quote p{ margin: 0; font-size: clamp(1.75rem, 4.5vw, 3rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); }
@@ -852,6 +852,8 @@ html.motion-ok .nutrithm-case [data-reveal].is-in{ opacity: 1; transform: none; 
 .nutrithm-case .case-meta{ margin: 0 0 clamp(0.75rem, 2vh, 1.5rem); }
 .nutrithm-case .title .mark{ width: clamp(56px, 10vh, 100px); height: clamp(56px, 10vh, 100px); }
 .nutrithm-case .tools-slot{ margin: clamp(0.75rem, 2vh, 1.25rem) 0 0; }
+/* Top bar spans the full screen width, edge to edge */
+header.top{ width: 100vw; margin-left: calc(50% - 50vw); margin-right: 0; box-sizing: border-box; }
 </style>
 <script>
 try { var t = localStorage.getItem('nutrithm-theme'); if (t === 'light' || t === 'dark') (document.querySelector('.nutrithm-case') || document.documentElement).setAttribute('data-theme', t); } catch (e) {}
@@ -1581,7 +1583,7 @@ html[data-theme=&quot;dark&quot;] .preview-tools button:hover { background: #343
   <blockquote class="closing-quote">
     <p>“Eat right at the right time. Stay healthy.”</p>
   </blockquote>
-  <p class="closing-bye">Bye!</p>
+  <p class="closing-bye">Thank you!</p>
 </section>
 </div>
 <script>
@@ -1894,7 +1896,7 @@ html[data-theme=&quot;dark&quot;] .preview-tools button:hover { background: #343
 (function(){
   var t = document.querySelector('.nc-tools'), slot = document.querySelector('.tools-slot');
   if (!t || !slot) return;
-  function upd(){ t.classList.toggle('is-stuck', slot.getBoundingClientRect().top <= 16); }
+  function upd(){ t.classList.toggle('is-stuck', slot.getBoundingClientRect().top <= 64); }
   window.addEventListener('scroll', upd, {passive: true});
   window.addEventListener('resize', upd);
   upd();
